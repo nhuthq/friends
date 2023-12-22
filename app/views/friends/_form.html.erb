@@ -2,8 +2,6 @@
   <% if friend.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
-
-
       <ul>
         <% friend.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -38,7 +36,8 @@
     <%= form.text_field :twitter, class: 'form-control', placeholder: 'Twitter tag' %>
   </div>
 
+  <br/>
   <div class='actions'>
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-secondary' %>
   </div>
 <% end %>
