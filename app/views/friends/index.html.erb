@@ -1,29 +1,33 @@
 <table class='table table-striped table-bordered table-hover'>
   <thead class='thead-dark'>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Twitter</th>
-      <th collapse='3'></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Twitter</th>
+    <th>Account ID</th>
+    <th collapse='3'></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-    <% @friends.each do |friend| %>
-    <tr>
-      <td><%= friend.first_name %></td>
-      <td><%= friend.last_name %></td>
-      <td><%= friend.email %></td>
-      <td><%= friend.phone %></td>
-      <td><%= friend.twitter %></td>
-      <td><%= link_to('Show', friend_path(friend))%></td>
-      <td><%= link_to('Edit', edit_friend_path(friend))%></td>
-      <td><%= button_to "Destroy this friend", friend, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %></td>
-    </tr>
+  <% @friends.each do |friend| %>
+    <% if friend.user == current_user %>
+      <tr>
+        <td><%= friend.first_name %></td>
+        <td><%= friend.last_name %></td>
+        <td><%= friend.email %></td>
+        <td><%= friend.phone %></td>
+        <td><%= friend.twitter %></td>
+        <td><%= friend.user_id %></td>
+        <td><%= link_to('Show', friend_path(friend)) %></td>
+        <td><%= link_to('Edit', edit_friend_path(friend)) %></td>
+        <td><%= button_to "Destroy", friend, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %></td>
+      </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
